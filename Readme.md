@@ -1,9 +1,8 @@
 <b><big>****  This document contains following  ****</big></b><br>
-<ol>
-<li> Project-Description.</li>
-<li> Requirements.</li>
-<li> How to execute the project.</li>
-</ol>
+
+- Project-Description.
+- Requirements.
+- How to execute the project.
 <br>
 
 <b><big>****  Project-Description  ****</big></b><br>
@@ -18,108 +17,108 @@ live website on:  http://34.208.109.124
 
 <b><big>****  Requirements  ****</big></b><br>
 To run this project you should have the following things on your computer.<br>
-<ol>
-<li>Any Browser</li>
-<li>Internet</li>
-</ol>
+
+- Any Browser.
+- Internet.
+
 <br>
 
 <b><big>****  How to execute the project  ****</big></b><br>
 <b><i>----  Updating the softwares  ----</i></b><br>
-<ol>
-<li> `sudo apt-get update`</li>
-<li> `sudo apt-get upgrade`</li>
-</ol>
+
+-  `sudo apt-get update`.
+-  `sudo apt-get upgrade`.
+
 
 <b><i>----  Creating user grader and giving sudo access ----</i></b><br>
-<ol>
-<li> `sudo adduser grader`</li>
-<li> `sudo touch /etc/sudoers.d/grader` </li>
-<li> `sudo nano /etc/sudoers.d/grader` </li>
-<li>Now, In this file type <br> `grader ALL=(ALL) NOPASSWD:ALL`</li>
-</ol>
+
+-  `sudo adduser grader`.
+-  `sudo touch /etc/sudoers.d/grader` .
+-  `sudo nano /etc/sudoers.d/grader` .
+- Now, In this file type <br> `grader ALL=(ALL) NOPASSWD:ALL`.
+
 
 <b><i>----  Allowing grader user to login by public key  ----</i></b><br>
-<ol>
-<li>When connected as a root user to server type <br>`su - grader`</li>
-<li>`mkdir .ssh`</li>
-<li>`touch .ssh/authorized_keys`</li>
-<li>`nano .ssh/authorized_keys`</li>
-<li>Now copy the contents of public key generated on your local machine which you must save to `~/.ssh/` folder where '~' is your default directory and paste it in authorized_keys file.</li>
-<li>`chmod 700 .ssh`</li>
-<li>`chmod 644 .ssh/authorized_keys`</li>
-<li>`service ssh restart` --> For restarting the ssh</li>
-<li>Now, to login through the public key<br>
-    `ssh -i [privateKeyFilename] grader@34.208.109.124`</li>
-</ol>
+
+- When connected as a root user to server type <br>`su - grader`.
+-  `mkdir .ssh` .
+-  `touch .ssh/authorized_keys` .
+- `nano .ssh/authorized_keys`.
+- Now copy the contents of public key generated on your local machine which you must save to `~/.ssh/` folder where '~' is your default directory and paste it in authorized_keys file..
+- `chmod 700 .ssh`.
+- `chmod 644 .ssh/authorized_keys`.
+- `service ssh restart` --> For restarting the ssh.
+- Now, to login through the public key<br>
+    `ssh -i [privateKeyFilename] grader@34.208.109.124`.
+
 
 <b><i>---- Disabling Root access and password login  ----</i></b><br>
 	In the the `/etc/ssh/sshd_config` file change the following:
-<li>`PermitRootLogin` to `PermitRootLogin no`</li>
-<li>`PasswordAuthentication yes` to `PasswordAuthentication no`</li>
+- `PermitRootLogin` to `PermitRootLogin no`.
+- `PasswordAuthentication yes` to `PasswordAuthentication no`.
 
 <b><i>----  Changing default port from 22 to 2200  ----</i></b><br>
-<ol>
-<li>`sudo nano /etc/.ssh/sshd_config`</li>
-<li>Change the line `Port 22` to `Port 2200`</li>
-</ol>
+
+- `sudo nano /etc/.ssh/sshd_config`.
+- Change the line `Port 22` to `Port 2200`.
+
 
 <b><i>---- Configuring Firewall to allow certain ports  ----</i></b><br>
-<ol>
-<li>Check the Firewall status by typing<br>`sudo ufw status`</li>
-<li>If its inactive then proceed without executing the next command, else execute the next command</li>
-<li>`sudo ufw disable` </li>
-<li>`sudo ufw default allow incoming`</li>
-<li>`sudo ufw allow 2200/tcp`</li>
-<li>`sudo ufw allow 80/tcp`</li>
-<li>`sudo ufw allow 123/udp`</li>
-<li>`sudo ufw enable`</li>
-</ol>
+
+- Check the Firewall status by typing<br>`sudo ufw status`.
+- If its inactive then proceed without executing the next command, else execute the next command.
+- `sudo ufw disable` .
+- `sudo ufw default allow incoming`.
+- `sudo ufw allow 2200/tcp`.
+- `sudo ufw allow 80/tcp`.
+- `sudo ufw allow 123/udp`.
+- `sudo ufw enable`.
+
 
 <b><i>----  Changing the local timezone to UTC  ----</i></b><br>
-<ol>Type the following to set timezone to UTC:
-<li>`sudo  timedatectl set-timezone Etc/UTC`</li>
-</ol>
+Type the following to set timezone to UTC:
+- `sudo  timedatectl set-timezone Etc/UTC`.
+
 
 <b><i>----  Installing Apache, mod_wsgi and PostgreSQL  ----</i></b><br>
-<ol>
-<li>`sudo apt-get install apache2`</li>
-<li>`sudo apt-get install libapache2-mod-wsgi`</li>
-<li>`sudo apache2ctl restart`</li>
-<li>`sudo apt-get install postgresql`</li>
-</ol>
+
+- `sudo apt-get install apache2`.
+- `sudo apt-get install libapache2-mod-wsgi`.
+- `sudo apache2ctl restart`.
+- `sudo apt-get install postgresql`.
+
 
 <b><i>----  Installing Additional Pakages and Creating .wsgi file  ----</i></b><br>
-<ol>
-<li>`Sudo apt-get install git`</li>
-<li>`sudo apt-get install python-pip`</li>
-<li>`sudo pip install flask`</li>
-<li>`sudo pip install oauthclient`</li>
-<li>`sudo pip install sqlalchemy`</li>
-<li>`sudo pip install pyscopg2`</li>
-<li>`sudo apt-get install python-dev`</li>
-</ol>
+
+- `Sudo apt-get install git`.
+- `sudo apt-get install python-pip`.
+- `sudo pip install flask`.
+- `sudo pip install oauthclient`.
+- `sudo pip install sqlalchemy`.
+- `sudo pip install pyscopg2`.
+- `sudo apt-get install python-dev`.
+
 
 <b><i>----  Cloning Catalog project  ----</i></b><br>
-<ol>
-<li>`cd /var/www`</li>
-<li>`sudo mkdir catalog`</li>
-<li>`sudo chown -R grader:grader catalog`</li>
-<li>`cd catalog`</li>
-<li>`git clone https://github.com/shubham-shar/catalog.git catalog` </li>
-<li>`sudo nano catalog.wsgi` and write the following in it: <br>
+
+- `cd /var/www`.
+- `sudo mkdir catalog`.
+- `sudo chown -R grader:grader catalog`.
+- `cd catalog`.
+- `git clone https://github.com/shubham-shar/catalog.git catalog` .
+- `sudo nano catalog.wsgi` and write the following in it: <br>
 `#!/usr/bin/python
  import sys
  import logging
  logging.basicConfig(stream=sys.stderr)
  sys.path.insert(0, "/var/www/catalog/")
- from catalog import finalproject as application`</li>
-</ol>
+ from catalog import finalproject as application`.
+
 
 <b><i>----  Configure and Enable a new virtual host  ----</i></b><br>
-<ol>
-<li>`sudo nano /etc/apache2/sites-available/catalog.conf`</li>
-<li>Enter the following: <br>
+
+- `sudo nano /etc/apache2/sites-available/catalog.conf`.
+- Enter the following:
 `<VirtualHost *:80>
   ServerName 34.208.109.124
   ServerAlias ec2-34-208-109-124.us-west-2.compute.amazonaws.com
@@ -138,25 +137,25 @@ To run this project you should have the following things on your computer.<br>
   ErrorLog ${APACHE_LOG_DIR}/error.log
   LogLevel warn
   CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>`</li>
-<li>`sudo a2ensite catalog`</li>
-</ol>
+</VirtualHost>`.
+- `sudo a2ensite catalog`.
+
 
 <b><i>----  Configuring PostgreSQL  ----</i></b><br>
-<ol>
-<li>`sudo su - postgres`</li>
-<li>`psql`</li>
-<li>`CREATE DATABASE catalog;`</li>
-<li>`CREATE USER catalog;`</li>
-<li>`ALTER USER catalog WITH PASSWORD 'apppass';`</li>
-<li>`GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;`</li>
-<li>`\q`</li>
-<li>`exit`</li>
-<li>Find and replace the line with`engine = create_engine` with the following: <br>
-		`engine = create_engine('postgresql://catalog:apppass@localhost/catalog')`</li>
-<li>`sudo python database_setup.py`</li>
-	<li>`sudo service apache2 restart`</li>
-</ol>
+
+- `sudo su - postgres`.
+- `psql`.
+- `CREATE DATABASE catalog;`.
+- `CREATE USER catalog;`.
+- `ALTER USER catalog WITH PASSWORD 'apppass';`.
+- `GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;`.
+- `\q`.
+- `exit`.
+- Find and replace the line with`engine = create_engine` with the following: <br>
+		`engine = create_engine('postgresql://catalog:apppass@localhost/catalog')`.
+- `sudo python database_setup.py`.
+	- `sudo service apache2 restart`.
+
 That's it, now enjoy the webpage.<br>
 
 <b><big>****  Thank you  ****</big></b><br>
