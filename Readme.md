@@ -24,13 +24,13 @@ To run this project you should have the following things on your computer.<br>
 <br>
 
 <b><big>****  How to execute the project  ****</big></b><br>
-<b><i>----  Updating the softwares  ----</i></b><br>
+<br><b><i>----  Updating the softwares  ----</i></b><br>
 
 -  `sudo apt-get update`.
 -  `sudo apt-get upgrade`.
 
 
-<b><i>----  Creating user grader and giving sudo access ----</i></b><br>
+<br><b><i>----  Creating user grader and giving sudo access ----</i></b><br>
 
 -  `sudo adduser grader`.
 -  `sudo touch /etc/sudoers.d/grader` .
@@ -38,7 +38,7 @@ To run this project you should have the following things on your computer.<br>
 - Now, In this file type <br> `grader ALL=(ALL) NOPASSWD:ALL`.
 
 
-<b><i>----  Allowing grader user to login by public key  ----</i></b><br>
+<br><b><i>----  Allowing grader user to login by public key  ----</i></b><br>
 
 - When connected as a root user to server type <br>`su - grader`.
 -  `mkdir .ssh` .
@@ -52,18 +52,18 @@ To run this project you should have the following things on your computer.<br>
     `ssh -i [privateKeyFilename] grader@34.208.109.124`.
 
 
-<b><i>---- Disabling Root access and password login  ----</i></b><br>
+<br><b><i>---- Disabling Root access and password login  ----</i></b><br>
 	In the the `/etc/ssh/sshd_config` file change the following:
 - `PermitRootLogin` to `PermitRootLogin no`.
 - `PasswordAuthentication yes` to `PasswordAuthentication no`.
 
-<b><i>----  Changing default port from 22 to 2200  ----</i></b><br>
+<br><b><i>----  Changing default port from 22 to 2200  ----</i></b><br>
 
 - `sudo nano /etc/.ssh/sshd_config`.
 - Change the line `Port 22` to `Port 2200`.
 
 
-<b><i>---- Configuring Firewall to allow certain ports  ----</i></b><br>
+<br><b><i>---- Configuring Firewall to allow certain ports  ----</i></b><br>
 
 - Check the Firewall status by typing<br>`sudo ufw status`.
 - If its inactive then proceed without executing the next command, else execute the next command.
@@ -75,11 +75,11 @@ To run this project you should have the following things on your computer.<br>
 - `sudo ufw enable`.
 
 
-<b><i>----  Changing the local timezone to UTC  ----</i></b><br>
+<br><b><i>----  Changing the local timezone to UTC  ----</i></b><br>
 Type the following to set timezone to UTC:
 - `sudo  timedatectl set-timezone Etc/UTC`.
 
-
+<br>
 <b><i>----  Installing Apache, mod_wsgi and PostgreSQL  ----</i></b><br>
 
 - `sudo apt-get install apache2`.
@@ -87,7 +87,7 @@ Type the following to set timezone to UTC:
 - `sudo apache2ctl restart`.
 - `sudo apt-get install postgresql`.
 
-
+<br>
 <b><i>----  Installing Additional Pakages and Creating .wsgi file  ----</i></b><br>
 
 - `Sudo apt-get install git`.
@@ -98,7 +98,7 @@ Type the following to set timezone to UTC:
 - `sudo pip install pyscopg2`.
 - `sudo apt-get install python-dev`.
 
-
+<br>
 <b><i>----  Cloning Catalog project  ----</i></b><br>
 
 - `cd /var/www`.
@@ -107,19 +107,21 @@ Type the following to set timezone to UTC:
 - `cd catalog`.
 - `git clone https://github.com/shubham-shar/catalog.git catalog` .
 - `sudo nano catalog.wsgi` and write the following in it: <br>
-`#!/usr/bin/python
- import sys
- import logging
- logging.basicConfig(stream=sys.stderr)
- sys.path.insert(0, "/var/www/catalog/")
- from catalog import finalproject as application`.
+```
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0, "/var/www/catalog/")
+from catalog import finalproject as application
+```
 
-
-<b><i>----  Configure and Enable a new virtual host  ----</i></b><br>
+<br><b><i>----  Configure and Enable a new virtual host  ----</i></b><br>
 
 - `sudo nano /etc/apache2/sites-available/catalog.conf`.
 - Enter the following:
-`<VirtualHost *:80>
+```
+  <VirtualHost *:80>
   ServerName 34.208.109.124
   ServerAlias ec2-34-208-109-124.us-west-2.compute.amazonaws.com
   ServerAdmin admin@34.208.109.124
@@ -137,10 +139,11 @@ Type the following to set timezone to UTC:
   ErrorLog ${APACHE_LOG_DIR}/error.log
   LogLevel warn
   CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>`.
+</VirtualHost>
+```
 - `sudo a2ensite catalog`.
 
-
+<br>
 <b><i>----  Configuring PostgreSQL  ----</i></b><br>
 
 - `sudo su - postgres`.
@@ -154,8 +157,9 @@ Type the following to set timezone to UTC:
 - Find and replace the line with`engine = create_engine` with the following: <br>
 		`engine = create_engine('postgresql://catalog:apppass@localhost/catalog')`.
 - `sudo python database_setup.py`.
-	- `sudo service apache2 restart`.
+- `sudo service apache2 restart`.
 
+<br>
 That's it, now enjoy the webpage.<br>
 
 <b><big>****  Thank you  ****</big></b><br>
