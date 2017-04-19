@@ -1,4 +1,5 @@
-#****  This document contains following  ****
+<b><big>****  This document contains following  ****</big></b>
+<br><br>
 	<ol type="1">
 	<li> Project-Description.</li>
 	<li> Requirements.</li>
@@ -6,7 +7,8 @@
 	</ol>
 <br>
 
-#****  Project-Description  ****
+<b><big>****  Project-Description  ****</big></b>
+<br><br>
 In this project, i have configured a linux server. The server was initiated by Amazon Web services.
 The project includes making neccessary changes to make the server secure of many outside harmful attacks.
 I have added a user name grader and given him all the neccessary and needed to join the server.
@@ -15,7 +17,8 @@ error. For this we will do the steps included in <b>How to execute the project<b
 
 live website on:  http://34.208.109.124
 
-#****  Requirements  ****
+<b><big>****  Requirements  ****</big></b>
+<br><br>
 To run this project you should have the following things on your computer.<br>
 	<ol type="1">
 	<li>Any Browser</li>
@@ -23,14 +26,15 @@ To run this project you should have the following things on your computer.<br>
 	</ol>
 <br>
 
-#****  How to execute the project  ****
-	<b><i>----  Updating the softwares  ----</b></i><br>
+<b><big>****  How to execute the project  ****</big></b>
+<br><br>
+<b><i>----  Updating the softwares  ----</i></b><br>
 	<ol type="1">
 		<li> `sudo apt-get update`</li>
 		<li> `sudo apt-get upgrade`</li>
 	</ol>
 
-	<b><i>----  Creating user grader and giving sudo access ----</b></i><br>
+	<b><i>----  Creating user grader and giving sudo access ----</i></b><br>
 	<ol type="1">
 		<li> `sudo adduser grader`</li>
 		<li> `sudo touch /etc/sudoers.d/grader` </li>
@@ -38,7 +42,7 @@ To run this project you should have the following things on your computer.<br>
 		<li>Now, In this file type <br> `grader ALL=(ALL) NOPASSWD:ALL`</li>
 	</ol>
 
-	<b><i>----  Allowing grader user to login by public key  ----</b></i><br>
+<b><i>----  Allowing grader user to login by public key  ----</i></b><br>
 	<ol type="1">
 		<li>When connected as a root user to server type <br>`su - grader`</li>
 		<li>`mkdir .ssh`</li>
@@ -63,12 +67,12 @@ To run this project you should have the following things on your computer.<br>
 		<li>Change the line `Port 22` to `Port 2200`</li>
 	</ol>
 
-	<b><i>---- Configuring Firewall to allow certain ports  ----</b></i><br>
+	<b><i>---- Configuring Firewall to allow certain ports  ----</i></b><br>
 	<ol type="1">
 		<li>Check the Firewall status by typing<br>`sudo ufw status`</li>
 		<li>If its inactive then proceed without executing the next command, else execute the next command</li>
 		<li>`sudo ufw disable` </li>
-		</li>`sudo ufw default allow incoming`</li>
+		<li>`sudo ufw default allow incoming`</li>
 		<li>`sudo ufw allow 2200/tcp`</li>
 		<li>`sudo ufw allow 80/tcp`</li>
 		<li>`sudo ufw allow 123/udp`</li>
