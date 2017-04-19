@@ -1,6 +1,6 @@
 <b><big>****  This document contains following  ****</big></b>
 <br><br>
-	<ol type="1">
+<ol>
 	<li> Project-Description.</li>
 	<li> Requirements.</li>
 	<li> How to execute the project.</li>
@@ -13,14 +13,14 @@ In this project, i have configured a linux server. The server was initiated by A
 The project includes making neccessary changes to make the server secure of many outside harmful attacks.
 I have added a user name grader and given him all the neccessary and needed to join the server.
 lastly, i have uploaded my previous project name catalog so that my server shows it online without any
-error. For this we will do the steps included in <b>How to execute the project<b>.
+error. For this we will do the steps included in <b>How to execute the project</b>.
 
 live website on:  http://34.208.109.124
 
 <b><big>****  Requirements  ****</big></b>
 <br><br>
 To run this project you should have the following things on your computer.<br>
-	<ol type="1">
+<ol>
 	<li>Any Browser</li>
 	<li>Internet</li>
 	</ol>
@@ -29,95 +29,95 @@ To run this project you should have the following things on your computer.<br>
 <b><big>****  How to execute the project  ****</big></b>
 <br><br>
 <b><i>----  Updating the softwares  ----</i></b><br>
-	<ol type="1">
-		<li> `sudo apt-get update`</li>
-		<li> `sudo apt-get upgrade`</li>
+<ol>
+	<li>sudo apt-get update</li>
+	<li>sudo apt-get upgrade</li>
 	</ol>
 
 	<b><i>----  Creating user grader and giving sudo access ----</i></b><br>
-	<ol type="1">
-		<li> `sudo adduser grader`</li>
-		<li> `sudo touch /etc/sudoers.d/grader` </li>
-		<li> `sudo nano /etc/sudoers.d/grader` </li>
-		<li>Now, In this file type <br> `grader ALL=(ALL) NOPASSWD:ALL`</li>
+	<ol>
+		<li>sudo adduser grader</li>
+		<li>sudo touch /etc/sudoers.d/grader</li>
+		<li>sudo nano /etc/sudoers.d/grader</li>
+		<li>Now, In this file type <br> grader ALL=(ALL) NOPASSWD:ALL</li>
 	</ol>
 
 <b><i>----  Allowing grader user to login by public key  ----</i></b><br>
-	<ol type="1">
-		<li>When connected as a root user to server type <br>`su - grader`</li>
-		<li>`mkdir .ssh`</li>
-		<li>`touch .ssh/authorized_keys`</li>
-		<li>`nano .ssh/authorized_keys`</li>
-		<li>Now copy the contents of public key generated on your local machine which you must save to `~/.ssh/` folder where '~' is your default directory and paste it in authorized_keys file.</li>
-		<li>`chmod 700 .ssh`</li>
-		<li>`chmod 644 .ssh/authorized_keys`</li>
-		<li>`service ssh restart` --> For restarting the ssh</li>
-		<li>Now, to login through the public key<br>
-				`ssh -i [privateKeyFilename] grader@34.208.109.124`</li>
+<ol>
+		<li>When connected as a root user to server type <br>su - grader</li>
+		<li>mkdir .ssh</li>
+		<li>touch .ssh/authorized_keys</li>
+		<li>nano .ssh/authorized_keys</li>
+		<li>Now copy the contents of public key generated on your local machine which you must save to
+		~/.ssh/ folder where '~' is your default directory and paste it in authorized_keys file.</li>
+		<li>chmod 700 .ssh</li>
+		<li>chmod 644 .ssh/authorized_keys</li>
+		<li>service ssh restart --> For restarting the ssh</li>
+		<li>Now, to login through the public key ssh -i [privateKeyFilename] grader@34.208.109.124</li>
 	</ol>
 
 	<b><i>---- Disabling Root access and password login  ----</i></b><br>
-	In the the `/etc/ssh/sshd_config` file change the following:
-	<li>`PermitRootLogin` to `PermitRootLogin no`</li>
-	<li>`PasswordAuthentication yes` to `PasswordAuthentication no`</li>
+	In the the /etc/ssh/sshd_config file change the following:
+	<li>PermitRootLogin to PermitRootLogin no</li>
+	<li>PasswordAuthentication yes to PasswordAuthentication no</li>
 
 	<b><i>----  Changing default port from 22 to 2200  ----</i><b><br>
-	<ol type="1">
-		<li>`sudo nano /etc/.ssh/sshd_config`</li>
-		<li>Change the line `Port 22` to `Port 2200`</li>
+	<ol>
+		<li>sudo nano /etc/.ssh/sshd_config</li>
+		<li>Change the line Port 22 to Port 2200</li>
 	</ol>
 
 	<b><i>---- Configuring Firewall to allow certain ports  ----</i></b><br>
-	<ol type="1">
-		<li>Check the Firewall status by typing<br>`sudo ufw status`</li>
+	<ol>
+		<li>Check the Firewall status by typing<br>sudo ufw status</li>
 		<li>If its inactive then proceed without executing the next command, else execute the next command</li>
-		<li>`sudo ufw disable` </li>
-		<li>`sudo ufw default allow incoming`</li>
-		<li>`sudo ufw allow 2200/tcp`</li>
-		<li>`sudo ufw allow 80/tcp`</li>
-		<li>`sudo ufw allow 123/udp`</li>
-		<li>`sudo ufw enable`</li>
+		<li>sudo ufw disable</li>
+		<li>sudo ufw default allow incoming</li>
+		<li>sudo ufw allow 2200/tcp</li>
+		<li>sudo ufw allow 80/tcp</li>
+		<li>sudo ufw allow 123/udp</li>
+		<li>sudo ufw enable</li>
 	</ol>
 
 	<b><i>----  Changing the local timezone to UTC  ----</i></b><br>
-	<ol type="1">Type the following to set timezone to UTC:
-		<li>`sudo  timedatectl set-timezone Etc/UTC`</li>
+	<ol>Type the following to set timezone to UTC:
+		<li>sudo  timedatectl set-timezone Etc/UTC</li>
 	</ol>
 
 	<b><i>----  Installing Apache, mod_wsgi and PostgreSQL  ----</i></b><br>
-	<ol type="1">
-		<li>`sudo apt-get install apache2`</li>
-		<li>`sudo apt-get install libapache2-mod-wsgi`</li>
-		<li>`sudo apache2ctl restart`</li>
-		<li>`sudo apt-get install postgresql`</li>
+	<ol>
+		<li>sudo apt-get install apache2</li>
+		<li>sudo apt-get install libapache2-mod-wsgi</li>
+		<li>sudo apache2ctl restart</li>
+		<li>sudo apt-get install postgresql</li>
 	</ol>
 
 	<b><i>----  Installing Additional Pakages and Creating .wsgi file  ----</i></b><br>
-	<ol type="1">
-		<li>`Sudo apt-get install git`</li>
-		<li>`sudo apt-get install python-pip`</li>
-		<li>`sudo pip install flask`</li>
-		<li>`sudo pip install oauthclient`</li>
-		<li>`sudo pip install sqlalchemy`</li>
-		<li>`sudo pip install pyscopg2`</li>
-		<li>`sudo apt-get install python-dev`</li>
+	<ol>
+		<li>Sudo apt-get install git</li>
+		<li>sudo apt-get install python-pip</li>
+		<li>sudo pip install flask</li>
+		<li>sudo pip install oauthclient</li>
+		<li>sudo pip install sqlalchemy</li>
+		<li>sudo pip install pyscopg2</li>
+		<li>sudo apt-get install python-dev</li>
 	</ol>
 
 	<b><i>----  Cloning Catalog project  ----</i><b><br>
 	<ol type="1">
-		<li>`cd /var/www`</li>
-		<li>`sudo mkdir catalog`</li>
-		<li>`sudo chown -R grader:grader catalog`</li>
-		<li>`cd catalog`</li>
-		<li>`git clone https://github.com/shubham-shar/catalog.git catalog` </li>
-		<li>`sudo nano catalog.wsgi` and write the following in it: <br>
-		`#!/usr/bin/python
+		<li>cd /var/www</li>
+		<li>sudo mkdir catalog</li>
+		<li>sudo chown -R grader:grader catalog</li>
+		<li>cd catalog</li>
+		<li>git clone https://github.com/shubham-shar/catalog.git catalog </li>
+		<li>sudo nano catalog.wsgi and write the following in it: <br>
+		 #!/usr/bin/python
 		 import sys
 		 import logging
 		 logging.basicConfig(stream=sys.stderr)
 		 sys.path.insert(0, "/var/www/catalog/")
 
-		 from catalog import finalproject as application`</li>
+		 from catalog import finalproject as application</li>
 	</ol>
 
 	<b><i>----  Configure and Enable a new virtual host  ----</i></b><br>
@@ -163,4 +163,4 @@ To run this project you should have the following things on your computer.<br>
 	</ol>
 That's it, now enjoy the webpage.<br>
 
-#****  Thank you  ****
+<b><big>****  Thank you  ****</big></b>
