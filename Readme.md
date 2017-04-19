@@ -58,7 +58,7 @@ To run this project you should have the following things on your computer.<br>
 <li>`PermitRootLogin` to `PermitRootLogin no`</li>
 <li>`PasswordAuthentication yes` to `PasswordAuthentication no`</li>
 
-<b><i>----  Changing default port from 22 to 2200  ----</i><b><br>
+<b><i>----  Changing default port from 22 to 2200  ----</i></b><br>
 <ol>
 <li>`sudo nano /etc/.ssh/sshd_config`</li>
 <li>Change the line `Port 22` to `Port 2200`</li>
