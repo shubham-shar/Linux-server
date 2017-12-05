@@ -131,7 +131,7 @@ from catalog.finalproject import app as application
 application.secret_key = "Add any key as you want"
 ```
 <br>
-<b>NOTE-- <b> `key is not written due to security reasons`
+<b>NOTE-- </b> `key is not written due to security reasons`
 
 <br><b><i>----  Configure and Enable a new virtual host  ----</i></b><br>
 
